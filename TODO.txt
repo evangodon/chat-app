@@ -1,0 +1,7 @@
+
+1. better validation on index
+    IMPROVE VALIDATION MESSAGE
+
+2. Improve time stamps (time from now, 2 minutes ago.... + dates)
+
+3. Typing symbol appears when person is typing

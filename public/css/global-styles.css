@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    font-size: .95rem
+}
+button,
+button:hover {
+    border: none;
+    color: #fff;
+    padding: 10px
+}
+
+li,
+ul {
+    list-style-position: inside;
+}
+h1 {
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.5rem
+}
+button {
+    background: #FFA726;
+    cursor: pointer;
+    transition: background .3s ease
+}
+button:hover {
+    background: #FFB74D;
+}
+button:disabled {
+    cursor: default;
+    background: #FFD54F;
+}

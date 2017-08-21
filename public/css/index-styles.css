@@ -1,0 +1,90 @@
+
+.header-under-line{
+    margin-top: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+ .validation-message{
+    min-height: 50px;
+ }
+
+/*Center Form*/
+.centered-form {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    background: rgba(46,49,146,1);
+    background: -moz-linear-gradient(-45deg, rgba(46,49,146,1) 0%, rgba(36,156,203,1) 52%, rgba(29,234,244,1) 90%, rgba(27,255,255,1) 100%);
+    background: -webkit-linear-gradient(-45deg, rgba(46,49,146,1) 0%, rgba(36,156,203,1) 52%, rgba(29,234,244,1) 90%, rgba(27,255,255,1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(46,49,146,1) 0%, rgba(36,156,203,1) 52%, rgba(29,234,244,1) 90%, rgba(27,255,255,1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(46,49,146,1) 0%, rgba(36,156,203,1) 52%, rgba(29,234,244,1) 90%, rgba(27,255,255,1) 100%);
+    background: linear-gradient(135deg, rgba(46,49,146,1) 0%, rgba(36,156,203,1) 52%, rgba(29,234,244,1) 90%, rgba(27,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2e3192', endColorstr='#1bffff', GradientType=1 );
+}
+.centered-form__form {
+    background: rgba(250, 250, 250, .9);
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    padding: 20px 40px;
+    margin: 20px;
+    width: 400px
+}
+.form-field {
+    margin: 20px 0;
+
+}
+.form-field>* {
+    width: 100%
+}
+.form-field label {
+    display: block;
+    margin-bottom: 7px
+}
+.form-field input,
+.form-field select {
+    border: 1px solid #e1e1e1;
+    padding: 10px;
+
+}
+
+.form-field:last-child{
+    margin-top: 42px;
+}
+
+.form-field button {
+    transform: translateX(50%);
+    width: 50%;
+}
+
+
+/*Validation*/
+.validation {
+    border: 1px solid;
+    margin: 7px 0px;
+    padding:10px 15px;
+    color: #D8000C;
+    background-color: rgba(255, 186, 186, 0.3);
+    font-size: 15px;
+    animation: fade-in-out 0.2s ease;
+    
+}
+
+.form-field .invalid-input {
+    border: 1px solid #D8000C;
+}
+
+.invalid-input:focus {
+    outline: none;
+}
+
+@keyframes fade-in-out {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
