@@ -8,6 +8,7 @@ import '../css/chat-styles.css';
 
 // JS
 import scrollToBottom from './modules/scrollToBottom';
+import strToRGB from './modules/strToRGB';
 import './libs/deparam';
 
 
@@ -46,7 +47,7 @@ client.on('disconnect', () => {
 client.on('updateUserList', (users) => {
     const ul = $('<ul></ul>');
     users.forEach((user) => {
-       ul.append($('<li></li>').text(user));
+       ul.append($('<li style="color:#' + strToRGB(user) + '"></li>').text(user));
     });
     $('#users').html(ul);
 });

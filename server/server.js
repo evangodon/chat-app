@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
         const user = users.getUser(socket.id);
         let newMessage;
         if (user && isRealString(message.text)) {
-            newMessage= generateMessage(user.name, message.text);
+            newMessage = generateMessage(user.name, message.text);
             io.to(user.room).emit('newMessage', newMessage);
             mongo.saveMessageToDB(newMessage, user.room);
         }
