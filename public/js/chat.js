@@ -1,6 +1,7 @@
 const Mustache = require('mustache');
 const io = require('socket.io-client');
 const client = io();
+const {commandsList, commandsPrint} = require('../../server/utils/commands');
 
 // CSS
 import '../css/global-styles.css';
@@ -26,12 +27,27 @@ client.on('connect', () => {
 
     $('#message-form').on('submit', (e) => {
         e.preventDefault();
-        const $messageTextbox = $('[name=message]');
-        client.emit('createMessage', {
-            text: $messageTextbox.val()
-        }, () => {
-            $messageTextbox.val('');
-        });
+        var $messageTextbox = $('[name=message]');
+		
+		// Checking if message is a command
+        if ($messageTextbox.val() in commandsList) {
+			var popout = "";			
+			if ($messageTextbox.val() == "/commands") {
+				popout = commandsPrint;
+			}
+			else {
+				popout = commandsList[$messageTextbox.val()];
+			}
+			$messageTextbox.val('');
+			window.alert(popout);
+		}
+		else {
+			client.emit('createMessage', {
+				text: $messageTextbox.val()
+			}, () => {
+				$messageTextbox.val('');
+			});
+		}
     });
 
     $('#leave-room-btn').on('click', () => {
