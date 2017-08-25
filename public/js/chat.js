@@ -38,18 +38,14 @@ client.on('connect', () => {
 			else {
 				popout = commandsList[$messageTextbox.val()];
 			}
-			$messageTextbox.val('');
 			window.alert(popout);
 		}
-		
-		// Not a command
 		else {
 			client.emit('createMessage', {
 				text: $messageTextbox.val()
-			}, () => {
-				$messageTextbox.val('');
 			});
 		}
+		$messageTextbox.val('');
     });
 
     $('#leave-room-btn').on('click', () => {

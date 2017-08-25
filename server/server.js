@@ -60,7 +60,7 @@ io.on('connection', (socket) => {
         callback();
     });
 
-    socket.on('createMessage', (message, callback) => {
+    socket.on('createMessage', (message) => {
         const user = users.getUser(socket.id);
         let newMessage;
         if (user && isRealString(message.text)) {
@@ -68,8 +68,7 @@ io.on('connection', (socket) => {
             io.to(user.room).emit('newMessage', newMessage);
             mongo.saveMessageToDB(newMessage, user.room);
         }
-        callback();
-
+		// callback(); // Removed, inefficient way of clearing message box
     });
 
     socket.on('getRooms', () => {
