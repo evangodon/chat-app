@@ -41,6 +41,8 @@ client.on('connect', () => {
 			$messageTextbox.val('');
 			window.alert(popout);
 		}
+		
+		// Not a command
 		else {
 			client.emit('createMessage', {
 				text: $messageTextbox.val()
