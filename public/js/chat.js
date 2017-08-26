@@ -1,7 +1,7 @@
 const Mustache = require('mustache');
 const io = require('socket.io-client');
 const client = io();
-const {commandsList, commandsPrint} = require('../../server/utils/commands');
+const {commandsList, commandsPrint} = require('./modules/commands');
 
 // CSS
 import '../css/global-styles.css';
