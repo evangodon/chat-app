@@ -68,7 +68,6 @@ io.on('connection', (socket) => {
             io.to(user.room).emit('newMessage', newMessage);
             mongo.saveMessageToDB(newMessage, user.room);
         }
-		// callback(); // Removed, inefficient way of clearing message box
     });
 
     socket.on('getRooms', () => {
@@ -77,6 +76,13 @@ io.on('connection', (socket) => {
             socket.emit('sendRooms', roomNames);
         })
     });
+	
+	socket.on('printRooms', () => {
+		mongo.getRoomsFromDB().then(rooms => {
+			let roomNames = rooms.map(room => room.name);
+			socket.emit('roomNames', roomNames);
+		});
+	});
 
 
     socket.on('disconnect', () => {

@@ -35,6 +35,14 @@ client.on('connect', () => {
 			if ($messageTextbox.val() == "/commands") {
 				popout = commandsPrint;
 			}
+			else if ($messageTextbox.val() == "/printRooms") {
+				client.emit('printRooms'); 
+				client.on('roomNames', (roomNames) => {
+					console.log(roomNames);
+					popout = roomNames;
+					window.alert(popout);
+				});
+			}
 			else {
 				popout = commandsList[$messageTextbox.val()];
 			}

@@ -1,18 +1,23 @@
+const io = require('socket.io-client');
+const client = io();
+
 const commandsList = { // Testing /commands
 	"/help": "What do you need help with?",
 	"/commands": "Commands:",
 	"/banana": "banana",
 	"/cheese": "cheese",
-	"/test": "test"
+	"/test": "test",
+	"/printRooms": client.emit('printRooms')
 };
 
 const commandsPrint = (
-	"Commands: " +
-	"			/help\n" +
-	"			/commands\n" +
-	"			/banana\n" +
-	"			/cheese\n" +
-	"			/test\n"
+		"Commands: " +
+	"/help\n" +
+	"/commands\n" +
+	"/banana\n" +
+	"/cheese\n" +
+	"/test\n" + 
+	"/printRooms"
 );
 
 module.exports = {commandsList, commandsPrint};
