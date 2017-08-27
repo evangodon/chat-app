@@ -32,19 +32,19 @@ client.on('connect', () => {
 		// Checking if message is a command
         if ($messageTextbox.val() in commandsList) {
 			var popout = "";			
-			if ($messageTextbox.val() == "/commands") {
+			if ($messageTextbox.val() == "\commands") {
 				popout = commandsPrint;
 			}
-			else if ($messageTextbox.val() == "/printRooms") {
+			else if ($messageTextbox.val() == "\printRooms") {
 				client.emit('printRooms'); 
 				client.on('roomNames', (roomNames) => {
-					console.log(roomNames);
 					popout = roomNames;
 					window.alert(popout);
 				});
 			}
 			else {
 				popout = commandsList[$messageTextbox.val()];
+				// window.alert(popout);
 			}
 			window.alert(popout);
 		}
