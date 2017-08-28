@@ -9,7 +9,7 @@ import '../css/chat-styles.css';
 
 // JS
 import scrollToBottom from './modules/scrollToBottom';
-import strToRGB from './modules/strToRGB';
+import strToRGB from './modules/strToRgb';
 import './libs/deparam';
 
 
