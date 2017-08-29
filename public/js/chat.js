@@ -10,7 +10,9 @@ import '../css/chat-styles.css';
 // JS
 import scrollToBottom from './modules/scrollToBottom';
 import strToRGB from './modules/strToRgb';
+import destroyRoom from './modules/destroyRoom';
 import './libs/deparam';
+
 
 
 client.on('connect', () => {
@@ -28,23 +30,26 @@ client.on('connect', () => {
     $('#message-form').on('submit', (e) => {
         e.preventDefault();
         var $messageTextbox = $('[name=message]');
-		
+        var messageInput = $messageTextbox.val().toString();
+
+
 		// Checking if message is a command
-        if ($messageTextbox.val() in commandsList) {
-			var popout = "";			
-			if ($messageTextbox.val() == "/commands") {
-				popout = commandsPrint;
-			} else if ($messageTextbox.val() == "/printRooms") {
-				client.on('roomNames', (roomNames) => {
-                    popout = roomNames;
-                    // window.alert(popout);
-                });
-                client.emit('printRooms');
-			} else {
-				popout = commandsList[$messageTextbox.val()];
-				// window.alert(popout);
-			}
-			window.alert(popout);
+        if (messageInput in commandsList) {
+            var popout = '';
+			switch(messageInput){
+                case '/commands':
+                    popout = commandsPrint;
+                    break;
+                case '/printRooms':
+                    client.on('roomNames', (roomNames) => {
+                        popout = roomNames;
+                    });
+                    client.emit('printRooms');
+                    break;
+                case '/deleteRoom':
+                    destroyRoom();
+                    break;
+            }
 		} else {
 			client.emit('createMessage', {
 				text: $messageTextbox.val()

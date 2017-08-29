@@ -84,6 +84,10 @@ io.on('connection', (socket) => {
 		});
 	});
 
+	socket.on('deleteRoom', (room) => {
+        mongo.deleteRoom(room);
+    });
+
 
     socket.on('disconnect', () => {
         const user = users.removeUser(socket.id);

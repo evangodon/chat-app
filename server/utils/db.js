@@ -52,7 +52,6 @@ class Mongo {
             }
         });
     }
-
     getMessagesFromRoom (fromThisRoom) {
         const query = Room.findOne({name: fromThisRoom});
         return query.exec((err, room) => {
@@ -62,6 +61,14 @@ class Mongo {
             if (room) {
                 return room.messages
             }
+        });
+    }
+    deleteRoom (room) {
+        Room.remove({name: room}, (err, removed) => {
+            if (err) {
+                return console.log(err);
+            }
+            console.log(`Room ${room} has been deleted.`)
         });
     }
 }

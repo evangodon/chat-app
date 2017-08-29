@@ -7,7 +7,8 @@ const commandsList = { // Testing /commands
 	"/banana": "banana",
 	"/cheese": "cheese",
 	"/test": "test",
-	"/printRooms": client.emit('printRooms')
+	"/printRooms": client.emit('printRooms'),
+	"/deleteRoom": "deleteRoom"
 };
 
 const commandsPrint = (

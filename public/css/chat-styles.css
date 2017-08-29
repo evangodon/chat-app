@@ -28,7 +28,7 @@
 
 .chat__messages,
 .chat__sidebar ul {
-    list-style-type: none
+    list-style-type: none;
 }
 
 .chat__main {
@@ -50,10 +50,14 @@
 }
 
 .chat__messages {
+    background-color: #fff;
     flex-grow: 1;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-    padding: 10px
+    padding: 10px;
+    transform: scale(1);
+    transition: transform 23s;
+
 }
 .chat__footer {
     display: flex;
@@ -93,6 +97,10 @@ span.time-stamp {
     color: #999;
     font-size: 0.75rem;
     margin: 5px;
+}
+
+.room-zoom-out{
+    transform: scale(0);
 }
 
 /*BUTTONS*/
