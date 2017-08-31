@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
 
 module.exports = {
     entry: {
@@ -13,6 +15,14 @@ module.exports = {
         new webpack.ProvidePlugin({
             "$": 'jquery',
             "jQuery": 'jquery'
+        }),
+        new BrowserSyncPlugin({
+            host: 'localhost',
+            port: 3000,
+            proxy: {
+                target: 'http://localhost:3000/',
+                ws: true
+            }
         })
     ],
     module: {

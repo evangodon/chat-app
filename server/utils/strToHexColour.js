@@ -1,4 +1,4 @@
-export default function strToRGB(str) {
+const strToHexColour = (str) => {
 	// hash to int
 	var hash = 0;
 	for (var i = 0; i < str.length; i++) {
@@ -10,5 +10,7 @@ export default function strToRGB(str) {
 		.toString(16)
 		.toUpperCase();
 
-	return "00000".substring(0, 6 - c.length) + c;
+	return '#' + '00000'.substring(0, 6 - c.length) + c;
 }
+
+module.exports = {strToHexColour};

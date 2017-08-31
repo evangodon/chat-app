@@ -10,6 +10,9 @@ const messageSchema = new Schema({
         type: String,
         required: true
     },
+    colour: {
+      type: String
+    },
     createdAt: {
         type: String,
         required: true

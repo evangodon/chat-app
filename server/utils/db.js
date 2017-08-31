@@ -15,7 +15,7 @@ class Mongo {
                     if (err) {
                         return console.log(err);
                     } else {
-                        console.log('Room added to mongodb');
+                        console.log(`Room ${room} has been added to MongoDB.`);
                     }
                 });
             }
@@ -31,6 +31,7 @@ class Mongo {
                 let addThisMessage = new Message({
                     from: message.from,
                     text:  message.text,
+                    colour: message.colour,
                     createdAt:  message.createdAt
                 });
 

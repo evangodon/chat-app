@@ -9,7 +9,7 @@ import '../css/chat-styles.css';
 
 // JS
 import scrollToBottom from './modules/scrollToBottom';
-import strToRGB from './modules/strToRgb';
+import strToHexColour from '../../server/utils/strToHexColour';
 import destroyRoom from './modules/destroyRoom';
 import './libs/deparam';
 
@@ -71,7 +71,10 @@ client.on('disconnect', () => {
 client.on('updateUserList', (users) => {
     const ul = $('<ul></ul>');
     users.forEach((user) => {
-       ul.append($('<li style="color:#' + strToRGB(user) + '"></li>').text(user));
+        const span = $('<span class="user-colour"></span>')
+                        .css('background', user.colour);
+        ul.append($(`<li>${user.name}</li>`)
+           .append(span));
     });
     $('#users').html(ul);
 });
@@ -86,6 +89,7 @@ client.on('fillRoomWithMessages', (messages) => {
         });
 
         $('#messages').append(html);
+        $('.user-message:last').css({"background": message.colour })
         scrollToBottom();
     })
 });
@@ -112,6 +116,7 @@ client.on('newMessage', (message) => {
     });
 
     $('#messages').append(html);
+    $('.user-message:last').css({"background": message.colour })
     scrollToBottom();
 
 });

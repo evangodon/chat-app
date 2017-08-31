@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const {generateMessage, generateAdminMessage} = require('./utils/message');
 const {isRealString} = require('./utils/validation');
+const {strToHexColour} = require('./utils/strToHexColour');
 const {Users} = require('./utils/users');
 const {Mongo} = require('./utils/db');
 
@@ -43,7 +44,7 @@ io.on('connection', (socket) => {
         const room = params.room.toLowerCase();
         socket.join(room);
         users.removeUser(socket.id);
-        users.addUser(socket.id, params.name, room);
+        users.addUser(socket.id, params.name, room, strToHexColour(params.name));
 
         mongo.saveRoomToDB(room);
 
@@ -64,8 +65,8 @@ io.on('connection', (socket) => {
         const user = users.getUser(socket.id);
         let newMessage;
         if (user && isRealString(message.text)) {
-            newMessage = generateMessage(user.name, message.text);
-            io.to(user.room).emit('newMessage', newMessage);
+            newMessage = generateMessage(user.name, message.text, user.colour);
+            io.to(user.room).emit('newMessage', newMessage, user.colour);
             mongo.saveMessageToDB(newMessage, user.room);
         }
     });
