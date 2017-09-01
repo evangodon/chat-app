@@ -84,19 +84,24 @@
 
 .message {
     padding: 10px;
-
 }
 
 .user-message {
     color: #fff;
+    max-width: 30%;
+    padding: 5px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.20);
+}
+
+span.message-colour{
     border: 1px solid transparent;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    display: inline-block;
     overflow-wrap: break-word;
     padding: 5px;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.20);
-    max-width: 30%;
+
 }
 .user-colour {
     display: inline-block;

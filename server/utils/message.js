@@ -7,14 +7,14 @@ const generateMessage = (from, text, colour) => {
         from,
         text: cleanText,
         colour,
-        createdAt: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        createdAt: moment().toISOString(),
     };
 };
 
 const generateAdminMessage = (text) => {
     return {
         text,
-        createdAt: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        createdAt: moment().format('h:mm a, MMMM Do YYYY'),
     }
 }
 

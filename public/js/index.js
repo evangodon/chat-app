@@ -54,7 +54,7 @@ client.on('connect', () => {
         }
     });
 
-   // Check for input text in "Create Room" and disable "Current Rooms" select if needed
+   // Check for input text in "Create Room" and disable "Current Rooms" selection if needed
     $createRoomInput.change( () => {
         if ($createRoomInput.val()){
             $roomSelect.prop('disabled', 'disabled');
@@ -78,7 +78,7 @@ client.on('sendRooms', (rooms) => {
            roomOptions += `<option value="${roomName}">${roomName}</option>`;
        });
    } else {
-      roomOptions = '<option selected="selected" value="">None</option>'
+      roomOptions = '<option selected="selected" disabled> ----- </option>'
    }
 
    $('#room-selection').html(roomOptions);
@@ -87,5 +87,7 @@ client.on('sendRooms', (rooms) => {
 
 
 function capitalizeFirstLetters(word){
-    return word.replace(/\w\S*/g, (txt) => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()});
+    return word.replace(/\w\S*/g, (txt) => {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+    });
 }

@@ -2,6 +2,7 @@ const Mustache = require('mustache');
 const io = require('socket.io-client');
 const client = io();
 const {commandsList, commandsPrint} = require('./modules/commands');
+const moment = require('moment');
 
 // CSS
 import '../css/global-styles.css';
@@ -9,7 +10,6 @@ import '../css/chat-styles.css';
 
 // JS
 import scrollToBottom from './modules/scrollToBottom';
-import strToHexColour from '../../server/utils/strToHexColour';
 import destroyRoom from './modules/destroyRoom';
 import './libs/deparam';
 
@@ -82,14 +82,15 @@ client.on('updateUserList', (users) => {
 client.on('fillRoomWithMessages', (messages) => {
     const template = $('#message-template').html();
     messages.forEach((message) => {
+        const timeFromNow = moment(message.createdAt).fromNow();
         const html = Mustache.render(template, {
             from: message.from,
             text: message.text,
-            createdAt: message.createdAt
+            createdAt: timeFromNow
         });
 
         $('#messages').append(html);
-        $('.user-message:last').css({"background": message.colour })
+        $('.message-colour:last').css({"background": message.colour })
         scrollToBottom();
     })
 });
@@ -108,15 +109,16 @@ client.on('adminMessage', (message) => {
 
 
 client.on('newMessage', (message) => {
+    const formattedTime = moment(message.createdAt).format('h:mm a');
     const template = $('#message-template').html();
     const html = Mustache.render(template, {
         text: message.text,
         from: message.from,
-        createdAt: message.createdAt
+        createdAt: formattedTime
     });
 
     $('#messages').append(html);
-    $('.user-message:last').css({"background": message.colour })
+    $('.message-colour:last').css({"background": message.colour })
     scrollToBottom();
 
 });

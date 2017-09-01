@@ -3,11 +3,13 @@ Evan => E
 Andrew => A
 Julian => J
 
-- Improve time stamps (time from now, 2 minutes ago.... + dates)
+DONE Improve time stamps (time from now, 2 minutes ago.... + dates)
 - Typing symbol appears when person is typing
 - server side validation for names so that users can't choose any name upon message-sending. Since there are no passwords, we can still use sid or whatever in cookies
 DONE color-coded users in a room, assigned randomly and unique
+- Instead of random color generation for each user, make array of colors to choose from
 (J|A)- better swear filter (parse for that string anywhere, and filter it)
 - group subsequent messages from same user together
 E- add gif/webm support
 DONE consider getting setup on JIRA
+-FIX unit tests
