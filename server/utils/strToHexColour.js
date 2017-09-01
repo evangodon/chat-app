@@ -1,16 +1,24 @@
+const tinycolor = require('tinycolor2');
+
 const strToHexColour = (str) => {
-	// hash to int
-	var hash = 0;
-	for (var i = 0; i < str.length; i++) {
-		hash = str.charCodeAt(i) + ((hash << 5) - hash);
-	}
+    let hash = hashString(str);
+    let hue = Math.floor(hash * 30) * 16;
 
-	// int to RGB
-	var c = (hash & 0x00FFFFFF)
-		.toString(16)
-		.toUpperCase();
+    return new tinycolor(`hsla
+        (${hue}, 
+        0.7, 
+        0.6,
+        1)`
+    ).toHexString();
+}
 
-	return '#' + '00000'.substring(0, 6 - c.length) + c;
+function hashString(str){
+    let hash = 0;
+    for (i = 0; i < str.length; i++) {
+        char = str.charCodeAt(i);
+        hash = char + (hash << 6) + (hash << 16) - hash;
+    }
+    return '0.' + (hash >>> 0);
 }
 
 module.exports = {strToHexColour};

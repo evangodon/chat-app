@@ -11,7 +11,7 @@
     display: flex
 }
 .chat__sidebar {
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     width: 260px;
     height: 100vh;
     display: flex;
@@ -36,7 +36,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 100%
+    width: 100%;
 }
 
 .chat__sidebar h3 {
@@ -50,7 +50,7 @@
 }
 
 .chat__messages {
-    background-color: #fff;
+    background-color: #fafafa;
     flex-grow: 1;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
