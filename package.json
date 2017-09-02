@@ -9,8 +9,7 @@
     "watch:webpack": "webpack --watch --progress --colors",
     "test": "mocha server/**/*.test.js --color",
     "watch:test": "nodemon --exec npm test",
-    "open-browser": "sleepms 3000 && start http://localhost:3000",
-    "build:webpack": "webpack -p --colors"
+    "build": "webpack -p --colors"
   },
   "engines": {
     "node": "6.9.1"
@@ -25,11 +24,12 @@
     "browser-sync": "^2.18.13",
     "browser-sync-webpack-plugin": "^1.2.0",
     "expect": "^1.20.2",
+    "google-material-color-palette-json": "^2.0.1",
     "mocha": "^3.0.2",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
     "postcss-loader": "^2.0.6",
-    "sleep-ms": "^2.0.1"
+    "randomstring": "^1.1.5"
   },
   "dependencies": {
     "css-loader": "^0.28.4",
@@ -43,7 +43,6 @@
     "socket.io-client": "^2.0.3",
     "style-loader": "^0.18.2",
     "swearjar": "^0.2.0",
-    "tinycolor2": "^1.4.1",
     "webpack": "^3.5.3"
   }
 }

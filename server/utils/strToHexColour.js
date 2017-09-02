@@ -1,25 +1,22 @@
-const tinycolor = require('tinycolor2');
+const Palette = require('google-material-color-palette-json');
+
+const colours = ['red', 'pink', 'purple', 'deepPurple', 'indigo', 'blue', 'lightBlue','lime', 'cyan', 'teal', 'green'
+    , 'lightGreen', 'yellow', 'amber', 'orange', 'deepOrange']
 
 const strToHexColour = (str) => {
-    let hash = hashString(str);
-    let hue = Math.floor(hash * 30) * 12;
-    return new tinycolor(`hsla(
-        ${hue}, 
-        0.8,
-        0.6,
-        1 
-    `).toHexString();
+    // Get color from colours array
+    const colour = colours[hashString(str)];
+    // Return Hex value from Google material colours
+    return  Palette[colour].shade_A400;
 }
 
 function hashString(str){
-    let hash = 5381;
+    var hash = 0;
     for (let i = 0; i < str.length; i++) {
-        char = str.charCodeAt(i);
-        hash = ((hash << 5) + hash) + char;
-        /* hash * 33 + c */
+        hash = ((hash << 5) + hash) + str.charCodeAt(i);
     }
-    return '0.' + (hash >>> 0);
-
+    // Return positive number between 0 and 15
+    return (hash >>> 0)  % 16;
 }
 
 module.exports = {strToHexColour};

@@ -14,7 +14,7 @@ const generateMessage = (from, text, colour) => {
 const generateAdminMessage = (text) => {
     return {
         text,
-        createdAt: moment().format('h:mm a, MMMM Do YYYY'),
+        createdAt: moment().format('h:mm a, MMMM Do'),
     }
 }
 
