@@ -11,7 +11,7 @@ const {Users} = require('./utils/users');
 const {Mongo} = require('./utils/db');
 
 const publicPath = path.join(__dirname, '../public');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 7652;
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
         users.removeUser(socket.id);
         users.addUser(socket.id, params.name, room, strToHexColour(params.name));
 
-        mongo.saveRoomToDB(room);
+        mongo.saveRoom(room);
 
         // Add messages to room from DB
         mongo.getMessagesFromRoom(room).then((roomExists) => {
@@ -67,19 +67,19 @@ io.on('connection', (socket) => {
         if (user && isRealString(message.text)) {
             newMessage = generateMessage(user.name, message.text, user.colour);
             io.to(user.room).emit('newMessage', newMessage);
-            mongo.saveMessageToDB(newMessage, user.room);
+            mongo.saveMessage(newMessage, user.room);
         }
     });
 
     socket.on('getRooms', () => {
-        mongo.getRoomsFromDB().then(rooms => {
+        mongo.getRooms().then(rooms => {
             let roomNames = rooms.map(room => room.name);
             socket.emit('sendRooms', roomNames);
         })
     });
 	
 	socket.on('printRooms', () => {
-		mongo.getRoomsFromDB().then(rooms => {
+		mongo.getRooms().then(rooms => {
 			let roomNames = rooms.map(room => room.name);
 			socket.emit('roomNames', roomNames);
 		});

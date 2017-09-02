@@ -1,7 +1,7 @@
 const {Room, Message} = require('../../models/room');
 
 class Mongo {
-    saveRoomToDB (room) {
+    saveRoom (room) {
         Room.findOne({name: room}, (err, roomExists) => {
             if (err) {
                 return console.log(err);
@@ -21,7 +21,7 @@ class Mongo {
             }
         });
     }
-    saveMessageToDB (message, room) {
+    saveMessage (message, room) {
         Room.findOne({name: room}, (err, toThisRoom) => {
             if (err){
                 return console.log(err);
@@ -45,7 +45,7 @@ class Mongo {
         });
     }
 	
-    getRoomsFromDB () {
+    getRooms () {
 		const query = Room.find({});
         return query.exec((err) => {
             if (err) {
