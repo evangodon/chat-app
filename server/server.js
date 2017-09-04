@@ -11,7 +11,7 @@ const {Users} = require('./utils/users');
 const {Mongo} = require('./utils/db');
 
 const publicPath = path.join(__dirname, '../public');
-const port = process.env.PORT || 7652;
+const port = process.env.PORT || 5000;
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
@@ -50,13 +50,14 @@ io.on('connection', (socket) => {
 
         // Add messages to room from DB
         mongo.getMessagesFromRoom(room).then((roomExists) => {
-            if (roomExists && roomExists.messages.length > 0) {
-                socket.emit('fillRoomWithMessages', roomExists.messages);
-            }
-        });
+                if (roomExists && roomExists.messages.length > 0) {
+                    socket.emit('fillRoomWithMessages', roomExists.messages);
+                }
+            }).then(() => {
+                socket.emit('adminMessage', generateAdminMessage(`Welcome to room '${params.room}'`));
+            });
 
         io.to(room).emit('updateUserList', users.getUserList(room));
-        socket.emit('adminMessage', generateAdminMessage(`Welcome to room '${params.room}'`));
         socket.broadcast.to(room).emit('adminMessage', generateAdminMessage(`${params.name} has joined.`));
         callback();
     });

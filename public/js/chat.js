@@ -2,6 +2,7 @@ const Mustache = require('mustache');
 const io = require('socket.io-client');
 const client = io();
 const {commandsList, commandsPrint} = require('./modules/commands');
+const {addBubbleToMessage} = require('./modules/addBubbleToMessage');
 const moment = require('moment');
 
 // CSS
@@ -79,6 +80,13 @@ client.on('updateUserList', (users) => {
     $('#users').html(ul);
 });
 
+const appendMessageToTemplate = (html, message) => {
+    $('#messages').append(html);
+    const $messageHTML = $('.message__container:last-child');
+    addBubbleToMessage($messageHTML, message);
+    scrollToBottom();
+}
+
 client.on('fillRoomWithMessages', (messages) => {
     const template = $('#message-template').html();
     messages.forEach((message) => {
@@ -88,25 +96,9 @@ client.on('fillRoomWithMessages', (messages) => {
             text: message.text,
             createdAt: timeFromNow
         });
-
-        $('#messages').append(html);
-        $('.message-colour:last').css({"background": message.colour })
-        scrollToBottom();
-    })
-});
-
-// Admin messages
-client.on('adminMessage', (message) => {
-    const template = $('#message-template').html();
-    const html = Mustache.render(template, {
-        text: message.text,
-        createdAt: message.createdAt
+        appendMessageToTemplate(html, message);
     });
-
-    $('#messages').append(html);
-    scrollToBottom();
 });
-
 
 client.on('newMessage', (message) => {
     const formattedTime = moment(message.createdAt).format('h:mm a');
@@ -117,12 +109,17 @@ client.on('newMessage', (message) => {
         createdAt: formattedTime
     });
 
-    $('#messages').append(html);
-    $('.message-colour:last').css({"background": message.colour })
-    scrollToBottom();
-
+    appendMessageToTemplate(html, message);
 });
 
-
-
+// Admin messages
+client.on('adminMessage', (message) => {
+    const template = $('#message-template').html();
+    const html = Mustache.render(template, {
+        text: message.text,
+        createdAt: message.createdAt
+    });
+    $('#messages').append(html);
+    scrollToBottom();
+});
 

@@ -1,0 +1,48 @@
+
+span.message-bubble{
+    border: 1px solid transparent;
+    display: inline-block;
+    overflow-wrap: break-word;
+    padding: 5px;
+    animation: slide-in .3s ease;
+}
+
+@keyframes slide-in {
+    from {transform: translateY(50%);
+          opacity: 0;}
+    to   {transform: translateY(0);
+          opacity: 1;}
+}
+
+.default-bubble{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.top-bubble{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.middle-bubble{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.bottom-bubble{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+li.contains-top-bubble{
+    padding-bottom: 2px;
+}
+
+li.contains-bottom-bubble{
+    padding-top: 2px;
+}
+
+li.less-padding{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}

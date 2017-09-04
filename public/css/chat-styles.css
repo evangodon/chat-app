@@ -1,3 +1,5 @@
+@import './modules/textBubble.css';
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,23 +10,23 @@
 }
 
 .chat {
-    display: flex
+    display: flex;
 }
+
 .chat__sidebar {
     /*overflow-y: scroll;*/
     width: 260px;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: rgba(46,49,146,1);
-    background: rgba(78,0,188,1);
-    background: -moz-linear-gradient(-45deg, rgba(78,0,188,1) 0%, rgba(41,171,226,1) 100%);
-    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(78,0,188,1)), color-stop(100%, rgba(41,171,226,1)));
-    background: -webkit-linear-gradient(-45deg, rgba(78,0,188,1) 0%, rgba(41,171,226,1) 100%);
-    background: -o-linear-gradient(-45deg, rgba(78,0,188,1) 0%, rgba(41,171,226,1) 100%);
-    background: -ms-linear-gradient(-45deg, rgba(78,0,188,1) 0%, rgba(41,171,226,1) 100%);
-    background: linear-gradient(135deg, rgba(78,0,188,1) 0%, rgba(41,171,226,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e00bc', endColorstr='#29abe2', GradientType=1 );
+    background: rgba(128,128,128,1);
+    background: -moz-linear-gradient(top, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(128,128,128,1)), color-stop(100%, rgba(230,230,230,1)));
+    background: -webkit-linear-gradient(top, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
+    background: -o-linear-gradient(top, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
+    background: -ms-linear-gradient(top, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
+    background: linear-gradient(to bottom, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#808080', endColorstr='#e6e6e6', GradientType=0 );
 }
 
 .chat__messages,
@@ -50,7 +52,7 @@
 }
 
 .chat__messages {
-    background-color: #fafafa;
+    background: #eee;
     flex-grow: 1;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -82,27 +84,18 @@
     padding: 10px
 }
 
-.message {
+.message__container,
+.admin-message{
     padding: 10px;
 }
 
 .user-message {
     color: #fff;
     max-width: 30%;
-    padding: 5px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.20);
 }
 
-span.message-colour{
-    border: 1px solid transparent;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    display: inline-block;
-    overflow-wrap: break-word;
-    padding: 5px;
 
-}
 .user-colour {
     display: inline-block;
     float: right;
@@ -128,13 +121,6 @@ span.time-stamp {
     transform: scale(0);
 }
 
-/*BUTTONS*/
-.leave-room-btn,
-.leave-room-btn:hover{
-    margin: auto 40px 15px 40px;
-    padding: 5px 10px;
-
-}
 
 @media (max-width: 600px) {
     * {

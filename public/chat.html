@@ -15,7 +15,6 @@
     <div class="chat__sidebar">
         <h3>Online</h3>
         <div id="users"></div>
-        <button id="leave-room-btn" class="leave-room-btn">Leave Room</button>
     </div>
 
     <div class="chat__main">
@@ -31,20 +30,20 @@
     <script id="message-template" type="text/template">
         <!-- User messages -->
         {{#from}}
-            <li class="message">
+            <li class="message__container">
                 <div class="message__title">
-                    <h4>{{from}}
+                    <h4 class="user-name">{{from}}
                         <span class="time-stamp">{{createdAt}}</span>
                     </h4>
                 </div>
                 <div class="message__body">
-                    <p class="user-message"><span class="message-colour">{{text}}</span></p>
+                    <p class="user-message"><span class="message-bubble">{{text}}</span></p>
                 </div>
             </li>
         {{/from}}
         <!-- Admin messages -->
         {{^from}}
-            <li class="message">
+            <li class="admin-message">
                 <div class="message__body">
                     <p><i>{{text}}</i>
                         <span class="time-stamp">{{createdAt}}</span>
