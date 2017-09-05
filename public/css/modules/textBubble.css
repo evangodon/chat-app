@@ -4,7 +4,8 @@ span.message-bubble{
     display: inline-block;
     overflow-wrap: break-word;
     padding: 5px;
-    animation: slide-in .3s ease;
+    max-width: 60%;
+    animation: slide-in .2s ease;
 }
 
 @keyframes slide-in {
@@ -15,23 +16,23 @@ span.message-bubble{
 }
 
 .default-bubble{
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 .top-bubble{
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .middle-bubble{
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .bottom-bubble{
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 li.contains-top-bubble{

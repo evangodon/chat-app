@@ -12,6 +12,5 @@ export default function scrollToBottom() {
 
     if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight ){
         $messages.scrollTop(scrollHeight);
-        console.log(clientHeight)
     }
 }

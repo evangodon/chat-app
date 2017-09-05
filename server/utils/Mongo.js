@@ -53,15 +53,20 @@ class Mongo {
             }
         });
     }
-    getMessagesFromRoom (fromThisRoom) {
+    getMessagesFromRoom (fromThisRoom, limit) {
         const query = Room.findOne({name: fromThisRoom});
         return query.exec((err, room) => {
             if (err) {
                 return console.log(err)
             }
-            if (room) {
-                return room.messages
+            if (room){
+                const arrLength = room.messages.length;
+                if (arrLength > limit) {
+                    room.messages.splice(0, arrLength - limit);
+                }
+            return room.messages;
             }
+
         });
     }
     deleteRoom (room) {

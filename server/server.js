@@ -7,8 +7,8 @@ const mongoose = require('mongoose');
 const {generateMessage, generateAdminMessage} = require('./utils/message');
 const {isRealString} = require('./utils/validation');
 const {strToHexColour} = require('./utils/strToHexColour');
-const {Users} = require('./utils/users');
-const {Mongo} = require('./utils/db');
+const {Users} = require('./utils/Users');
+const {Mongo} = require('./utils/Mongo');
 
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 5000;
@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
         mongo.saveRoom(room);
 
         // Add messages to room from DB
-        mongo.getMessagesFromRoom(room).then((roomExists) => {
+        mongo.getMessagesFromRoom(room, 50).then((roomExists) => {
                 if (roomExists && roomExists.messages.length > 0) {
                     socket.emit('fillRoomWithMessages', roomExists.messages);
                 }
