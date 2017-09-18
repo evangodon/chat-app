@@ -13,7 +13,7 @@
 <body class="chat">
 
     <div class="chat__sidebar">
-        <h3>Online</h3>
+        <h3><i id="leave-room-icon" class="back-arrow"></i>Online</h3>
         <div id="users"></div>
     </div>
 
@@ -26,6 +26,17 @@
             </form>
         </div>
     </div>
+
+    <div class="chat__canvas">
+        <canvas id="canvas"></canvas>
+        <div class="chat__footer">
+            <form>
+               <h4>DRAW HERE</h4>
+            </form>
+        </div>
+    </div>
+
+
 
     <script id="message-template" type="text/template">
         <!-- User messages -->

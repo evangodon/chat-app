@@ -1,3 +1,5 @@
+@import './modules/_variables.css';
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -25,14 +27,14 @@ h1 {
     font-size: 1.5rem
 }
 button {
-    background: #FFA726;
+    background: var(--main-btn-colour);
     cursor: pointer;
     transition: background .3s ease
 }
 button:hover {
-    background: #FFB74D;
+    background: var(--main-btn-colour-hover);
 }
 button:disabled {
     cursor: default;
-    background: #FFD54F;
+    background: var(--main-btn-colour-disabled);
 }

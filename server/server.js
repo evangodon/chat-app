@@ -11,7 +11,7 @@ const {Users} = require('./utils/Users');
 const {Mongo} = require('./utils/Mongo');
 
 const publicPath = path.join(__dirname, '../public');
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
@@ -44,9 +44,12 @@ io.on('connection', (socket) => {
         const room = params.room.toLowerCase();
         socket.join(room);
         users.removeUser(socket.id);
-        users.addUser(socket.id, params.name, room, strToHexColour(params.name));
-
+        const userColour = strToHexColour(params.name);
+        users.addUser(socket.id, params.name, room, userColour);
         mongo.saveRoom(room);
+
+        // Send user colour to client side
+        socket.emit('initCanvas', userColour);
 
         // Add messages to room from DB
         mongo.getMessagesFromRoom(room, 50).then((roomExists) => {
@@ -54,7 +57,7 @@ io.on('connection', (socket) => {
                     socket.emit('fillRoomWithMessages', roomExists.messages);
                 }
             }).then(() => {
-                socket.emit('adminMessage', generateAdminMessage(`Welcome to room '${params.room}'`));
+                socket.emit('adminMessage', generateAdminMessage(`Welcome ${params.name} to room '${params.room}'`));
             });
 
         io.to(room).emit('updateUserList', users.getUserList(room));
@@ -70,6 +73,10 @@ io.on('connection', (socket) => {
             io.to(user.room).emit('newMessage', newMessage);
             mongo.saveMessage(newMessage, user.room);
         }
+    });
+
+    socket.on('draw', (data) => {
+        socket.broadcast.emit('draw', data);
     });
 
     socket.on('getRooms', () => {
@@ -95,7 +102,6 @@ io.on('connection', (socket) => {
         const user = users.removeUser(socket.id);
         if (user) {
             io.to(user.room).emit('updateUserList', users.getUserList(user.room));
-
             io.to(user.room).emit('adminMessage', generateAdminMessage(`${user.name} has left.`));
         }
     });

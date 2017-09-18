@@ -1,0 +1,16 @@
+:root {
+    /*Buttons*/
+    --main-btn-colour: #FFA726;
+    --main-btn-colour-hover: #FFB74D;
+    --main-btn-colour-disabled: #FFD54F;
+
+    /*Sidebar*/
+    --sidebar-background: #808080;
+
+    /*Messages*/
+    --messages-background: #ddd;
+
+    /*Canvas*/
+    --canvas-background-colour: #eee;
+    --canvas-border: #808080;
+}

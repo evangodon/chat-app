@@ -1,4 +1,6 @@
-@import './modules/textBubble.css';
+@import 'modules/_textBubble.css';
+@import 'modules/_messages.css';
+@import './modules/_canvas.css';
 
 * {
     box-sizing: border-box;
@@ -19,14 +21,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: rgba(128,128,128,1);
-    background: -moz-linear-gradient(top, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(128,128,128,1)), color-stop(100%, rgba(230,230,230,1)));
-    background: -webkit-linear-gradient(top, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
-    background: -o-linear-gradient(top, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
-    background: -ms-linear-gradient(top, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
-    background: linear-gradient(to bottom, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#808080', endColorstr='#e6e6e6', GradientType=0 );
+    background: var(--sidebar-background);
 }
 
 .chat__messages,
@@ -38,7 +33,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 100%;
+    width: 50%;
 }
 
 .chat__sidebar h3 {
@@ -52,8 +47,8 @@
 }
 
 .chat__messages {
-    background: #eee;
-    flex-grow: 1;
+    background: var(--messages-background);
+    flex: 1;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     padding: 10px;
@@ -63,7 +58,7 @@
 }
 .chat__footer {
     display: flex;
-    flex-shrink: 0
+    flex-shrink: 0;
 }
 .chat__footer form {
     flex-grow: 1;
@@ -84,47 +79,31 @@
     padding: 10px
 }
 
-.message__container,
-.admin-message{
-    padding: 10px;
-}
 
-.user-message {
-    color: #fff;
-    max-width: 30%;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.20);
-}
-
-
-.user-colour {
-    display: inline-block;
-    float: right;
-    height: 1.1rem;
-    width: 1.1rem;
-    border-radius: 50%;
-}
-.message__title {
-    display: flex;
-    margin-bottom: 5px
-}
-.message__title h4 {
-    font-weight: 600;
-    margin-right: 10px
-}
-span.time-stamp {
-    color: #999;
-    font-size: 0.75rem;
-    margin: 5px;
-}
 
 .room-zoom-out{
     transform: scale(0);
 }
 
+.back-arrow {
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 5px;
+    margin-right: 0.3rem;
+    transform: rotate(135deg);
+    cursor: pointer;
+
+}
+
+
 
 @media (max-width: 600px) {
     * {
         font-size: 1rem
+    }
+    .chat__canvas{
+        display: none;
     }
     .chat__sidebar {
         display: none
@@ -138,4 +117,5 @@ span.time-stamp {
     .chat__footer button {
         margin-right: 0
     }
+
 }

@@ -13,6 +13,7 @@ import '../css/chat-styles.css';
 import scrollToBottom from './modules/scrollToBottom';
 import destroyRoom from './modules/destroyRoom';
 import './libs/deparam';
+import canvas from './modules/canvas';
 
 
 
@@ -21,12 +22,12 @@ client.on('connect', () => {
 
     client.emit('join', params, (err) => {
         if (err){
-            alert(err);
             window.location.href = '/'
         } else {
             console.log('No errors');
         }
     });
+
 
     $('#message-form').on('submit', (e) => {
         e.preventDefault();
@@ -59,7 +60,7 @@ client.on('connect', () => {
 		$messageTextbox.val('');
     });
 
-    $('#leave-room-btn').on('click', () => {
+    $('#leave-room-icon').on('click', () => {
         window.location.href = '/';
     });
 
@@ -69,17 +70,32 @@ client.on('disconnect', () => {
     console.log('Disconnected from server')
 });
 
+// Canvas
+client.on('initCanvas', (colour) => {
+    canvas.init(colour);
+
+    window.addEventListener('resize', () => {
+        canvas.init(colour);
+    });
+});
+
+
+
+
+
+// User List
 client.on('updateUserList', (users) => {
     const ul = $('<ul></ul>');
     users.forEach((user) => {
         const span = $('<span class="user-colour"></span>')
                         .css('background', user.colour);
         ul.append($(`<li>${user.name}</li>`)
-           .append(span));
+          .append(span));
     });
     $('#users').html(ul);
 });
 
+// Messages
 const appendMessageToTemplate = (html, message) => {
     $('#messages').append(html);
     const $messageHTML = $('.message__container:last-child');

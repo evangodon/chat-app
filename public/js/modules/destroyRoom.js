@@ -4,7 +4,6 @@ const client = io();
 export default function() {
     $('body').append($('<audio autoplay><source src="/media/stars.mp3" type="audio/mp3"></audio>'));
 
-
     $('.chat__main').css({"background":"url('/media/space.jpg') no-repeat",
                          "background-position": "85% 100%",
                          "background-size": "cover"});
