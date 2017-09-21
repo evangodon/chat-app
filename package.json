@@ -9,7 +9,7 @@
     "watch:webpack": "webpack --watch --progress --colors",
     "test": "mocha server/**/*.test.js --color",
     "watch:test": "nodemon --exec npm test",
-    "build": "webpack -p --colors"
+    "build": "webpack -p --colors --progress"
   },
   "engines": {
     "node": "6.9.1"

@@ -5,12 +5,14 @@
     --main-btn-colour-disabled: #FFD54F;
 
     /*Sidebar*/
-    --sidebar-background: #808080;
+    /*--sidebar-background: #0C090A;*/
 
     /*Messages*/
-    --messages-background: #ddd;
+    --messages-background: #E0E0E0;
+
+    --chat-footer-color: #e6eaee;
 
     /*Canvas*/
-    --canvas-background-colour: #eee;
-    --canvas-border: #808080;
+    --canvas-background-colour: #232526;
+    --canvas-border: #e6eaee;
 }

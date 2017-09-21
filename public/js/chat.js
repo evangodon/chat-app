@@ -79,10 +79,6 @@ client.on('initCanvas', (colour) => {
     });
 });
 
-
-
-
-
 // User List
 client.on('updateUserList', (users) => {
     const ul = $('<ul></ul>');
